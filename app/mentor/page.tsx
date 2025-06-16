@@ -168,7 +168,7 @@ export default function MentorPage() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground">
-                        In this lesson, you'll learn how to create RESTful routes in Express.js 
+                        In this lesson, you&apos;ll learn how to create RESTful routes in Express.js 
                         to handle different HTTP methods and build a solid foundation for your API.
                       </p>
                     </CardContent>
@@ -276,16 +276,16 @@ app.post('/api/users', (req, res) => {
 // PUT route with parameter
 app.put('/api/users/:id', (req, res) => {
   const userId = req.params.id;
-  res.json({ 
-    message: \`Update user \${userId}\` 
+  res.json({
+    message: \`Update user \${userId}\`
   });
 });
 
 // DELETE route
 app.delete('/api/users/:id', (req, res) => {
   const userId = req.params.id;
-  res.json({ 
-    message: \`Delete user \${userId}\` 
+  res.json({
+    message: \`Delete user \${userId}\`
   });
 });
 

@@ -181,13 +181,17 @@ export default function AgentsPage() {
             <div className="border-b p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className={`w-10 h-10 rounded-lg ${currentAgent?.color} flex items-center justify-center`}>
-                    <currentAgent.icon className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h1 className="text-xl font-bold">{currentAgent?.name}</h1>
-                    <p className="text-sm text-muted-foreground">{currentAgent?.description}</p>
-                  </div>
+                  {currentAgent && (
+                    <>
+                      <div className={`w-10 h-10 rounded-lg ${currentAgent.color} flex items-center justify-center`}>
+                        <currentAgent.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h1 className="text-xl font-bold">{currentAgent.name}</h1>
+                        <p className="text-sm text-muted-foreground">{currentAgent.description}</p>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div className="flex items-center space-x-2">
                   <Badge variant="secondary" className="flex items-center space-x-1">

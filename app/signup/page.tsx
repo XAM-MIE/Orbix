@@ -70,7 +70,7 @@ export default function SignUpPage() {
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500">
               <Mic className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-xl">VoiceBuilder</span>
+            <span className="font-bold text-xl">Orbix</span>
           </div>
           <div className="ml-auto w-16" />
         </div>

@@ -69,7 +69,7 @@ export default function LoginPage() {
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500">
               <Mic className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-xl">VoiceBuilder</span>
+            <span className="font-bold text-xl">Orbix</span>
           </div>
           <div className="ml-auto w-16" />
         </div>
@@ -164,7 +164,7 @@ export default function LoginPage() {
             </form>
 
             <div className="text-center text-sm">
-              <span className="text-muted-foreground">Don't have an account? </span>
+              <span className="text-muted-foreground">Don&apos;t have an account? </span>
               <Link href="/signup" className="font-medium text-primary hover:underline">
                 Sign up
               </Link>

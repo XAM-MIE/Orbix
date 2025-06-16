@@ -161,21 +161,21 @@ export default function ProfilePage() {
                         <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/50">
                           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                           <div className="flex-1">
-                            <p className="font-medium">Deployed "Task Manager Pro"</p>
+                            <p className="font-medium">Deployed &quot;Task Manager Pro&quot;</p>
                             <p className="text-sm text-muted-foreground">2 hours ago</p>
                           </div>
                         </div>
                         <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/50">
                           <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                           <div className="flex-1">
-                            <p className="font-medium">Completed "API Integration" tutorial</p>
+                            <p className="font-medium">Completed &quot;API Integration&quot; tutorial</p>
                             <p className="text-sm text-muted-foreground">1 day ago</p>
                           </div>
                         </div>
                         <div className="flex items-center space-x-4 p-4 rounded-lg bg-muted/50">
                           <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                           <div className="flex-1">
-                            <p className="font-medium">Created new project "Social Dashboard"</p>
+                            <p className="font-medium">Created new project &quot;Social Dashboard&quot;</p>
                             <p className="text-sm text-muted-foreground">3 days ago</p>
                           </div>
                         </div>

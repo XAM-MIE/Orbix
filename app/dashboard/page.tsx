@@ -33,7 +33,7 @@ export default function DashboardPage() {
               <div className="mb-8">
                 <h1 className="text-3xl font-bold mb-2">Welcome back!</h1>
                 <p className="text-muted-foreground">
-                  Ready to build something amazing? Choose how you'd like to start.
+                  Ready to build something amazing? Choose how you&apos;d like to start.
                 </p>
               </div>
 
