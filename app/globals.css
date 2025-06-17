@@ -88,3 +88,30 @@
     background-attachment: fixed;
   }
 }
+
+/* Responsive marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 640px) {
+  .animate-marquee {
+    animation-duration: 20s;
+  }
+}
+
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation-duration: 25s;
+  }
+}
