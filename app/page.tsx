@@ -620,74 +620,62 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-muted/50 via-background to-background overflow-hidden">
+      <footer className="bg-gradient-to-b from-muted/50 via-background to-background">
         <div className="container mx-auto px-4 py-8 sm:py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {/* Company Info */}
             <div className="space-y-4 text-center sm:text-left">
               <div className="flex items-center justify-center sm:justify-start space-x-2">
                 <Image
                   src="/assets/logo.png"
                   alt="Logo"
-                  width={30}
-                  height={30}
-                  className="w-8 h-8 sm:w-10 sm:h-10"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8"
                 />
-                <span className="text-lg sm:text-xl font-semibold">Orbix</span>
+                <span className="text-lg font-bold">Orbix</span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                AI-powered app development platform
+              </p>
+
+              {/* Social Links */}
+              <div className="flex items-center justify-center sm:justify-start space-x-3">
+                <Button variant="ghost" size="icon" className="h-8 w-8">
+                  <Twitter className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="icon" className="h-8 w-8">
+                  <Github className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="icon" className="h-8 w-8">
+                  <Linkedin className="w-4 h-4" />
+                </Button>
               </div>
             </div>
 
             {/* Quick Links */}
             <div className="text-center sm:text-left">
-              <h3 className="font-semibold mb-4 text-base sm:text-lg">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Contact
-                  </a>
-                </li>
+              <h3 className="font-semibold mb-3">Quick Links</h3>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/features" className="text-muted-foreground hover:text-primary">Features</Link></li>
+                <li><Link href="/pricing" className="text-muted-foreground hover:text-primary">Pricing</Link></li>
+                <li><Link href="/docs" className="text-muted-foreground hover:text-primary">Documentation</Link></li>
+                <li><Link href="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>
               </ul>
             </div>
 
             {/* Legal */}
             <div className="text-center sm:text-left">
-              <h3 className="font-semibold mb-4 text-base sm:text-lg">Legal</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Cookie Policy
-                  </a>
-                </li>
+              <h3 className="font-semibold mb-3">Legal</h3>
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/privacy" className="text-muted-foreground hover:text-primary">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-muted-foreground hover:text-primary">Terms of Service</Link></li>
+                <li><Link href="/support" className="text-muted-foreground hover:text-primary">Support</Link></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-border/50 mt-8 pt-8 text-center">
+          <div className="border-t border-border/50 mt-8 pt-6 text-center">
             <p className="text-sm text-muted-foreground">
               © 2025 Orbix. All rights reserved.
             </p>
