@@ -67,3 +67,10 @@ export const signOut = async () => {
   const { error } = await supabase.auth.signOut();
   return { error };
 };
+
+export const updateUserProfile = async (profileData: Record<string, any>) => {
+  const { data, error } = await supabase.auth.updateUser({
+    data: profileData,
+  });
+  return { data, error };
+};
