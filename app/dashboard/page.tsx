@@ -6,6 +6,7 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useSidebar } from '@/contexts/SidebarContext';
 import { 
   Plus, 
   Mic, 
@@ -19,10 +20,12 @@ import {
 } from 'lucide-react';
 
 export default function DashboardPage() {
+  const { isOpen } = useSidebar();
+  
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background">
-        <div className="w-64 hidden md:block">
+        <div className={`transition-all duration-300 overflow-hidden hidden md:block ${isOpen ? 'w-64' : 'w-16'}`}>
           <Sidebar />
         </div>
         
