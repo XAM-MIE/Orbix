@@ -19,6 +19,7 @@ import {
   Zap
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Input } from '@/components/ui/input';
 
 export default function BlogPage() {
   const featuredPost = {
@@ -248,6 +249,15 @@ export default function BlogPage() {
           <p className="text-muted-foreground mb-6">
             Get the latest blog posts, tutorials, and product updates delivered straight to your inbox.
           </p>
+          
+          <div className="flex flex-col gap-4 mb-6 max-w-md mx-auto">
+            <Input 
+              type="email" 
+              placeholder="Enter your email address" 
+              className="h-12 focus-visible:ring-0 focus-visible:outline-none focus-visible:border-purple-500 focus-visible:shadow-[0_0_15px_rgba(147,51,234,0.5)] transition-all duration-300"
+              style={{ outline: 'none', boxShadow: 'none' }}
+            />
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600">
