@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useSidebar } from "@/contexts/SidebarContext";
 import { 
   BookOpen, 
   Clock, 
@@ -148,6 +149,7 @@ export default function MentorPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isOpen } = useSidebar();
 
   const filteredCourses = mockCourses.filter(course => {
     const matchesCategory = selectedCategory === "All" || course.category === selectedCategory;
@@ -160,7 +162,7 @@ export default function MentorPage() {
     <ProtectedRoute>
       <div className="flex h-screen bg-background overflow-hidden">
         {/* Desktop Sidebar */}
-        <div className="w-64 hidden lg:block flex-shrink-0">
+        <div className={`transition-all duration-300 overflow-hidden hidden lg:block ${isOpen ? 'w-64' : 'w-16'}`}>
           <Sidebar />
         </div>
         

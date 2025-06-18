@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { useSidebar } from '@/contexts/SidebarContext';
 import { 
@@ -102,6 +103,97 @@ export function Sidebar() {
   const collapsed = !isOpen;
 
   return (
+<<<<<<< HEAD
+    <div className="flex flex-col h-full bg-muted/10 border-r">
+      <ScrollArea className="flex-1 h-full">
+        <div className="space-y-4 py-4 px-3">
+          <div className="space-y-1">
+            <div className="px-3 py-2">
+              <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+                Navigation
+              </h2>
+              <div className="space-y-1">
+                {routes.map((route) => (
+                  <Button
+                    key={route.href}
+                    asChild
+                    variant={pathname === route.href ? 'secondary' : 'ghost'}
+                    className="w-full justify-start"
+                  >
+                    <Link href={route.href}>
+                      <route.icon className={cn('mr-2 h-4 w-4', route.color)} />
+                      {route.label}
+                    </Link>
+                  </Button>
+                ))}
+              </div>
+            </div>
+            
+            <Separator />
+            
+            <div className="px-3 py-2">
+              <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+                Projects
+              </h2>
+              <div className="space-y-1">
+                {projectRoutes.map((route) => (
+                  <Button
+                    key={route.href}
+                    asChild
+                    variant={pathname === route.href ? 'secondary' : 'ghost'}
+                    className="w-full justify-start"
+                  >
+                    <Link href={route.href}>
+                      <route.icon className="mr-2 h-4 w-4" />
+                      {route.label}
+                    </Link>
+                  </Button>
+                ))}
+              </div>
+            </div>
+            
+            <Separator />
+            
+            <div className="px-3 py-2">
+              <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+                Tools
+              </h2>
+              <div className="space-y-1">
+                {toolRoutes.map((route) => (
+                  <Button
+                    key={route.href}
+                    asChild
+                    variant={pathname === route.href ? 'secondary' : 'ghost'}
+                    className="w-full justify-start"
+                  >
+                    <Link href={route.href}>
+                      <route.icon className="mr-2 h-4 w-4" />
+                      {route.label}
+                    </Link>
+                  </Button>
+                ))}
+              </div>
+            </div>
+            
+            <Separator />
+            
+            <div className="px-3 py-2">
+              <div className="space-y-1">
+                {settingsRoutes.map((route) => (
+                  <Button
+                    key={route.href}
+                    asChild
+                    variant={pathname === route.href ? 'secondary' : 'ghost'}
+                    className="w-full justify-start"
+                  >
+                    <Link href={route.href}>
+                      <route.icon className="mr-2 h-4 w-4" />
+                      {route.label}
+                    </Link>
+                  </Button>
+                ))}
+              </div>
+=======
     <div 
       className={`relative space-y-4 py-4 flex flex-col h-full bg-muted/10 border-r ${collapsed ? 'w-16' : 'w-64'} transition-all duration-300 group`}
     >
@@ -214,10 +306,11 @@ export function Sidebar() {
                   </Link>
                 </Button>
               ))}
+>>>>>>> 6f534573abf0c286766609c8ff9b1e0d94b3f65c
             </div>
           </div>
         </div>
-      </div>
+      </ScrollArea>
     </div>
   );
 }

@@ -6,7 +6,11 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+<<<<<<< HEAD
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+=======
 import { useSidebar } from '@/contexts/SidebarContext';
+>>>>>>> 6f534573abf0c286766609c8ff9b1e0d94b3f65c
 import { 
   Plus, 
   Mic, 
@@ -22,19 +26,56 @@ import {
 } from 'lucide-react';
 
 export default function DashboardPage() {
+<<<<<<< HEAD
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <ProtectedRoute>
+      <div className="flex h-screen bg-background overflow-hidden">
+        {/* Desktop Sidebar */}
+        <div className="w-64 hidden lg:block flex-shrink-0">
+=======
   const { isOpen } = useSidebar();
   
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background">
         <div className={`transition-all duration-300 overflow-hidden hidden md:block ${isOpen ? 'w-64' : 'w-16'}`}>
+>>>>>>> 6f534573abf0c286766609c8ff9b1e0d94b3f65c
           <Sidebar />
         </div>
         
+        {/* Mobile Header */}
+        <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-background border-b">
+          <div className="flex items-center justify-between p-4">
+            <h1 className="text-xl font-bold">Dashboard</h1>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-64 p-0">
+                <div className="flex items-center justify-between p-4 border-b">
+                  <h2 className="text-lg font-semibold">Menu</h2>
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <X className="w-5 h-5" />
+                  </Button>
+                </div>
+                <Sidebar />
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+        
         {/* Main Content */}
-        <div className="flex-1 flex flex-col min-h-0">
+        <div className="flex-1 flex flex-col min-h-0 lg:ml-0">
           <div className="flex-1 overflow-y-auto">
-            <div className="p-4 lg:p-8">
+            <div className="p-4 lg:p-8 pt-20 lg:pt-8">
               <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-6 lg:mb-8">
