@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useSidebar } from '@/contexts/SidebarContext';
 import { 
   Mic, 
   MicOff, 
@@ -23,16 +24,21 @@ import {
 } from 'lucide-react';
 
 export default function BuildPage() {
+  const { isOpen } = useSidebar();
   const [isRecording, setIsRecording] = useState(false);
   const [message, setMessage] = useState('');
   const [conversation, setConversation] = useState([
     {
       id: 1,
-      type: 'system',
-      content: 'Hi! I\'m your AI assistant. Describe the app you\'d like to build and I\'ll help you create it.',
+      type: 'assistant',
+      content: 'Hi there! I\'m your AI assistant. What would you like to build today?',
       timestamp: new Date().toISOString()
     }
   ]);
+
+  const toggleRecording = () => {
+    setIsRecording(!isRecording);
+  };
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
@@ -59,14 +65,11 @@ export default function BuildPage() {
     }, 1000);
   };
 
-  const toggleRecording = () => {
-    setIsRecording(!isRecording);
-  };
-
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background">
-        <div className="w-64 hidden md:block">
+        {/* Sidebar with toggle functionality */}
+        <div className={`transition-all duration-300 overflow-hidden hidden md:block ${isOpen ? 'w-64' : 'w-16'}`}>
           <Sidebar />
         </div>
         

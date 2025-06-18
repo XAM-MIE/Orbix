@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
+import { useSidebar } from '@/contexts/SidebarContext';
 import { 
   Home, 
   Hammer, 
@@ -19,7 +19,9 @@ import {
   BookOpen,
   Settings,
   Zap,
-  Mic
+  Mic,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 const routes = [
@@ -96,101 +98,126 @@ const settingsRoutes = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { isOpen, toggle } = useSidebar();
+  const collapsed = !isOpen;
 
   return (
-    <div className="flex flex-col h-full bg-muted/10 border-r">
-      <ScrollArea className="flex-1 h-full">
-        <div className="space-y-4 py-4 px-3">
-          <div className="space-y-1">
-            <div className="px-3 py-2">
+    <div 
+      className={`relative space-y-4 py-4 flex flex-col h-full bg-muted/10 border-r ${collapsed ? 'w-16' : 'w-64'} transition-all duration-300 group`}
+    >
+      {/* Toggle button that appears on hover - now vertically centered */}
+      <button 
+        onClick={toggle}
+        className="absolute right-0 top-1/2 -translate-y-1/2 transform translate-x-1/2 bg-background border rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 shadow-md hover:bg-muted"
+        type="button"
+        aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+      >
+        {collapsed ? 
+          <ChevronRight className="h-4 w-4" /> : 
+          <ChevronLeft className="h-4 w-4" />
+        }
+      </button>
+
+      <div className="px-3 py-2 flex-1">
+        <div className="space-y-1">
+          <div className="px-3 py-2">
+            {!collapsed && (
               <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
                 Navigation
               </h2>
-              <div className="space-y-1">
-                {routes.map((route) => (
-                  <Button
-                    key={route.href}
-                    asChild
-                    variant={pathname === route.href ? 'secondary' : 'ghost'}
-                    className="w-full justify-start"
-                  >
-                    <Link href={route.href}>
-                      <route.icon className={cn('mr-2 h-4 w-4', route.color)} />
-                      {route.label}
-                    </Link>
-                  </Button>
-                ))}
-              </div>
+            )}
+            <div className="space-y-1 flex flex-col items-center">
+              {routes.map((route) => (
+                <Button
+                  key={route.href}
+                  asChild
+                  variant={pathname === route.href ? 'secondary' : 'ghost'}
+                  className={`${collapsed ? 'justify-center w-10 h-10 p-0' : 'w-full justify-start'}`}
+                  title={collapsed ? route.label : undefined}
+                >
+                  <Link href={route.href} className={collapsed ? 'flex justify-center' : ''}>
+                    <route.icon className={cn('h-4 w-4', route.color, collapsed ? '' : 'mr-2')} />
+                    {!collapsed && route.label}
+                  </Link>
+                </Button>
+              ))}
             </div>
-            
-            <Separator />
-            
-            <div className="px-3 py-2">
+          </div>
+          
+          {!collapsed && <Separator />}
+          
+          <div className="px-3 py-2">
+            {!collapsed && (
               <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
                 Projects
               </h2>
-              <div className="space-y-1">
-                {projectRoutes.map((route) => (
-                  <Button
-                    key={route.href}
-                    asChild
-                    variant={pathname === route.href ? 'secondary' : 'ghost'}
-                    className="w-full justify-start"
-                  >
-                    <Link href={route.href}>
-                      <route.icon className="mr-2 h-4 w-4" />
-                      {route.label}
-                    </Link>
-                  </Button>
-                ))}
-              </div>
+            )}
+            <div className="space-y-1 flex flex-col items-center">
+              {projectRoutes.map((route) => (
+                <Button
+                  key={route.href}
+                  asChild
+                  variant={pathname === route.href ? 'secondary' : 'ghost'}
+                  className={`${collapsed ? 'justify-center w-10 h-10 p-0' : 'w-full justify-start'}`}
+                  title={collapsed ? route.label : undefined}
+                >
+                  <Link href={route.href} className={collapsed ? 'flex justify-center' : ''}>
+                    <route.icon className={`h-4 w-4 ${collapsed ? '' : 'mr-2'}`} />
+                    {!collapsed && route.label}
+                  </Link>
+                </Button>
+              ))}
             </div>
-            
-            <Separator />
-            
-            <div className="px-3 py-2">
+          </div>
+          
+          {!collapsed && <Separator />}
+          
+          <div className="px-3 py-2">
+            {!collapsed && (
               <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
                 Tools
               </h2>
-              <div className="space-y-1">
-                {toolRoutes.map((route) => (
-                  <Button
-                    key={route.href}
-                    asChild
-                    variant={pathname === route.href ? 'secondary' : 'ghost'}
-                    className="w-full justify-start"
-                  >
-                    <Link href={route.href}>
-                      <route.icon className="mr-2 h-4 w-4" />
-                      {route.label}
-                    </Link>
-                  </Button>
-                ))}
-              </div>
+            )}
+            <div className="space-y-1 flex flex-col items-center">
+              {toolRoutes.map((route) => (
+                <Button
+                  key={route.href}
+                  asChild
+                  variant={pathname === route.href ? 'secondary' : 'ghost'}
+                  className={`${collapsed ? 'justify-center w-10 h-10 p-0' : 'w-full justify-start'}`}
+                  title={collapsed ? route.label : undefined}
+                >
+                  <Link href={route.href} className={collapsed ? 'flex justify-center' : ''}>
+                    <route.icon className={`h-4 w-4 ${collapsed ? '' : 'mr-2'}`} />
+                    {!collapsed && route.label}
+                  </Link>
+                </Button>
+              ))}
             </div>
-            
-            <Separator />
-            
-            <div className="px-3 py-2">
-              <div className="space-y-1">
-                {settingsRoutes.map((route) => (
-                  <Button
-                    key={route.href}
-                    asChild
-                    variant={pathname === route.href ? 'secondary' : 'ghost'}
-                    className="w-full justify-start"
-                  >
-                    <Link href={route.href}>
-                      <route.icon className="mr-2 h-4 w-4" />
-                      {route.label}
-                    </Link>
-                  </Button>
-                ))}
-              </div>
+          </div>
+          
+          {!collapsed && <Separator />}
+          
+          <div className="px-3 py-2">
+            <div className="space-y-1 flex flex-col items-center">
+              {settingsRoutes.map((route) => (
+                <Button
+                  key={route.href}
+                  asChild
+                  variant={pathname === route.href ? 'secondary' : 'ghost'}
+                  className={`${collapsed ? 'justify-center w-10 h-10 p-0' : 'w-full justify-start'}`}
+                  title={collapsed ? route.label : undefined}
+                >
+                  <Link href={route.href} className={collapsed ? 'flex justify-center' : ''}>
+                    <route.icon className={`h-4 w-4 ${collapsed ? '' : 'mr-2'}`} />
+                    {!collapsed && route.label}
+                  </Link>
+                </Button>
+              ))}
             </div>
           </div>
         </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 }

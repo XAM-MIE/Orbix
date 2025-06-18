@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
+import { SidebarProvider } from '@/contexts/SidebarContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,16 +20,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={outfit.variable}>
-      <body className="font-sans">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${outfit.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <SidebarProvider>
+            {children}
+            <Toaster />
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
