@@ -347,19 +347,7 @@ export default function ProfilePage() {
                             </motion.div>
                           </div>
                           
-                          <div className="text-right hidden md:block">
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                              <Button 
-                                variant="outline" 
-                                size="sm" 
-                                className="border-purple-200 hover:border-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300"
-                                onClick={() => document.querySelector('[data-value="profile"]')?.click()}
-                              >
-                                <User className="w-4 h-4 mr-2 text-purple-500" />
-                                Edit Profile
-                              </Button>
-                            </motion.div>
-                          </div>
+                          {/* Edit Profile button removed */}
                         </div>
                       </CardContent>
                     </Card>
