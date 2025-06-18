@@ -311,7 +311,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.5 }}
                   className="text-muted-foreground text-sm sm:text-base"
                 >
-                  Build applications using natural language. Just describe what you want, and our AI will help you create it.
+                  Build applications using natural language. Just describe what you want, and Orbix will help you create it.
                 </motion.p>
               </div>
               <motion.div
@@ -430,7 +430,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="flex justify-center mt-8 sm:mt-12"
           >
-            <Link href="/build">
+            <Link href="/features">
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg"
@@ -660,7 +660,7 @@ export default function Home() {
                 <li><Link href="/features" className="text-muted-foreground hover:text-primary">Features</Link></li>
                 <li><Link href="/pricing" className="text-muted-foreground hover:text-primary">Pricing</Link></li>
                 <li><Link href="/docs" className="text-muted-foreground hover:text-primary">Documentation</Link></li>
-                <li><Link href="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>
+                <li><Link href="/how-it-works" className="text-muted-foreground hover:text-primary">How it Works</Link></li>
               </ul>
             </div>
 
@@ -668,9 +668,8 @@ export default function Home() {
             <div className="text-center sm:text-left">
               <h3 className="font-semibold mb-3">Legal</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/privacy" className="text-muted-foreground hover:text-primary">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="text-muted-foreground hover:text-primary">Terms of Service</Link></li>
-                <li><Link href="/support" className="text-muted-foreground hover:text-primary">Support</Link></li>
+                <li><Link href="/docs" className="text-muted-foreground hover:text-primary">Privacy Policy</Link></li>
+                <li><Link href="/features" className="text-muted-foreground hover:text-primary">Terms of Service</Link></li>
               </ul>
             </div>
           </div>

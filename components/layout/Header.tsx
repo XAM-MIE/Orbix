@@ -77,10 +77,23 @@ export function Header() {
               )}
             </Link>
             <Link
-              href="#how-it-works"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              href="/how-it-works"
+              className={cn(
+                "text-sm font-medium transition-colors relative",
+                isActive('/how-it-works')
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-primary"
+              )}
             >
               How it Works
+              {isActive('/how-it-works') && (
+                <motion.div
+                  layoutId="navbar-indicator"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
             </Link>
             <Link
               href="/pricing"
@@ -195,10 +208,18 @@ export function Header() {
                     )}
                   </Link>
                   <Link
-                    href="#how-it-works"
-                    className="text-lg font-medium text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors py-2 px-3 rounded-lg"
+                    href="/how-it-works"
+                    className={cn(
+                      "text-lg font-medium transition-colors py-2 px-3 rounded-lg relative",
+                      isActive('/how-it-works')
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-primary hover:bg-muted/50"
+                    )}
                   >
                     How it Works
+                    {isActive('/how-it-works') && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-500 to-blue-500 rounded-r-full" />
+                    )}
                   </Link>
                   <Link
                     href="/pricing"
