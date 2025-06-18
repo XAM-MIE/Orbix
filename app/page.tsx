@@ -46,6 +46,9 @@ export default function Home() {
 
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
+  const [promptValue, setPromptValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -80,6 +83,90 @@ export default function Home() {
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
+  };
+
+  const generatePrompt = (suggestion: string) => {
+    const prompts = {
+      'Generate a UI': [
+        'Generate a UI for a modern e-commerce dashboard with product cards, sales charts, and user analytics',
+        'Generate a UI for a task management app with drag-and-drop functionality and progress tracking',
+        'Generate a UI for a social media feed with post cards, comments, and like buttons'
+      ],
+      'Explain this code': [
+        'Explain this code: function fibonacci(n) { return n <= 1 ? n : fibonacci(n-1) + fibonacci(n-2); }',
+        'Explain this code: const debounce = (fn, delay) => { let timeoutId; return (...args) => { clearTimeout(timeoutId); timeoutId = setTimeout(() => fn(...args), delay); }; };',
+        'Explain this code: const useLocalStorage = (key, initialValue) => { const [storedValue, setStoredValue] = useState(() => { try { return JSON.parse(localStorage.getItem(key)) || initialValue; } catch { return initialValue; } }); return [storedValue, setStoredValue]; };'
+      ],
+      'Build an API': [
+        'Build an API for a user authentication system with JWT tokens and password hashing',
+        'Build an API for a blog platform with CRUD operations for posts and comments',
+        'Build an API for a weather service that fetches data from external APIs and caches responses'
+      ],
+      'Discuss a design': [
+        'Discuss a design for a mobile-first responsive navigation menu with hamburger animation',
+        'Discuss a design for a dark mode toggle with smooth transitions and accessibility features',
+        'Discuss a design for a data visualization dashboard with interactive charts and filters'
+      ]
+    };
+
+    const promptOptions = prompts[suggestion as keyof typeof prompts] || [];
+    const randomPrompt = promptOptions[Math.floor(Math.random() * promptOptions.length)];
+    setPromptValue(randomPrompt);
+  };
+
+  const handleSend = async () => {
+    if (!promptValue.trim()) return;
+    
+    setIsLoading(true);
+    
+    try {
+      // Simulate API call - replace with actual API endpoint
+      console.log('Sending prompt:', promptValue);
+      
+      // Here you would typically send to your AI service
+      // Example: await fetch('/api/chat', { method: 'POST', body: JSON.stringify({ prompt: promptValue }) })
+      
+      // For now, we'll simulate a response
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Clear the input after sending
+      setPromptValue('');
+      
+      // You can add response handling here
+      console.log('Response received for:', promptValue);
+      
+    } catch (error) {
+      console.error('Error sending prompt:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleMicClick = () => {
+    if (!isRecording) {
+      // Start recording
+      setIsRecording(true);
+      console.log('Starting voice recording...');
+      
+      // Simulate voice recording and transcription
+      setTimeout(() => {
+        const transcribedText = "Generate a modern landing page for a SaaS product with a hero section, features, and pricing";
+        setPromptValue(transcribedText);
+        setIsRecording(false);
+        console.log('Voice transcribed:', transcribedText);
+      }, 3000);
+    } else {
+      // Stop recording
+      setIsRecording(false);
+      console.log('Stopping voice recording...');
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   };
 
   return (
@@ -216,8 +303,12 @@ export default function Home() {
             className="w-full max-w-3xl mx-auto relative bg-card/80 backdrop-blur-lg border border-border/60 shadow-lg rounded-2xl"
           >
             <Textarea
+              value={promptValue}
+              onChange={(e) => setPromptValue(e.target.value)}
+              onKeyPress={handleKeyPress}
               placeholder="How can Orbix help you today? Describe your app, ask for code, or discuss a design."
               className="min-h-[120px] sm:min-h-[140px] resize-none p-4 sm:p-6 pt-4 pb-16 rounded-2xl border border-border bg-background/90 dark:bg-background/10 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm sm:text-base"
+              disabled={isLoading}
             />
             <div className="absolute bottom-4 left-4 sm:left-6 flex items-center space-x-2">
               <Button size="icon" variant="ghost" className="text-muted-foreground hover:text-primary rounded-full h-8 w-8 sm:h-10 sm:w-10">
@@ -228,11 +319,29 @@ export default function Home() {
               </Badge>
             </div>
             <div className="absolute bottom-4 right-4 sm:right-6 flex items-center space-x-2">
-              <Button size="icon" className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 rounded-full h-8 w-8 sm:h-10 sm:w-10">
-                <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Button 
+                size="icon" 
+                className={`rounded-full h-8 w-8 sm:h-10 sm:w-10 transition-all duration-200 ${
+                  isRecording 
+                    ? 'bg-red-500 hover:bg-red-600 animate-pulse' 
+                    : 'bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600'
+                }`}
+                onClick={handleMicClick}
+                disabled={isLoading}
+              >
+                <Mic className={`w-4 h-4 sm:w-5 sm:h-5 ${isRecording ? 'text-white' : ''}`} />
               </Button>
-              <Button size="icon" className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 rounded-full h-8 w-8 sm:h-10 sm:w-10">
-                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Button 
+                size="icon" 
+                className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 rounded-full h-8 w-8 sm:h-10 sm:w-10"
+                onClick={handleSend}
+                disabled={isLoading || !promptValue.trim()}
+              >
+                {isLoading ? (
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                )}
               </Button>
             </div>
           </motion.div>
@@ -252,7 +361,11 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
               >
-                <Button variant="outline" className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-muted transition-colors">
+                <Button 
+                  variant="outline" 
+                  className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-muted transition-colors"
+                  onClick={() => generatePrompt(item.text)}
+                >
                   <item.icon className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span className="hidden sm:inline">{item.text}</span>
                   <span className="sm:hidden">{item.text.split(' ')[0]}</span>
