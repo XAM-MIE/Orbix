@@ -164,39 +164,36 @@ export default function ProfilePage() {
         </div>
         
         <div className="flex-1 overflow-auto">
-          <div className="p-8 pt-20 md:pt-8 relative">
+          <div className="px-4 py-4 pt-20 md:px-6 md:py-6 md:pt-8 lg:px-8 lg:py-8 relative">
             {/* Background gradient orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <div className="absolute top-[10%] right-[10%] w-64 h-64 rounded-full bg-purple-500/10 blur-3xl"></div>
               <div className="absolute bottom-[20%] left-[15%] w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"></div>
             </div>
             
-            <div className="max-w-4xl mx-auto relative z-10">
+            <div className="w-full max-w-6xl mx-auto relative z-10">
               {/* Header */}
-              <motion.div 
-                className="flex items-center justify-between mb-8"
+              <motion.div
+                className="flex items-center justify-between mb-6"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
                 <div>
                   <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Profile</h1>
-                  <p className="text-muted-foreground">
-                    Manage your account and view your progress
-                  </p>
                 </div>
                 <Button
                   onClick={handleSignOut}
                   variant="outline"
-                  className="text-red-600 hover:text-red-700 hover:bg-red-100/10 transition-all duration-300 hover:shadow-md"
+                  className="text-red-600 hover:text-red-700 hover:bg-red-100/10 transition-all duration-300 hover:shadow-md fixed top-6 right-6 md:relative md:top-auto md:right-auto z-40"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
                   Sign Out
                 </Button>
               </motion.div>
 
-              <Tabs 
-                defaultValue="overview" 
+              <Tabs
+                defaultValue="overview"
                 className="space-y-6"
                 onValueChange={setActiveTab}
               >
@@ -204,6 +201,7 @@ export default function ProfilePage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
+                  className="w-full max-w-4xl mx-auto"
                 >
                   <TabsList className="grid w-full grid-cols-4 p-1 bg-muted/50 backdrop-blur-sm rounded-xl">
                     <TabsTrigger 
@@ -239,6 +237,7 @@ export default function ProfilePage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
+                    className="w-full max-w-4xl mx-auto"
                   >
                     <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm overflow-hidden">
                       <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-purple-500/20 to-blue-500/20"></div>
@@ -255,7 +254,7 @@ export default function ProfilePage() {
                               </AvatarFallback>
                             </Avatar>
                           </motion.div>
-                          
+
                           <div className="flex-1 space-y-4">
                             <div>
                               <h2 className="text-2xl font-bold">{profileData.fullName || user?.user_metadata?.full_name || 'User'}</h2>
@@ -263,7 +262,7 @@ export default function ProfilePage() {
                                 <Mail className="w-4 h-4 mr-2" />
                                 <span>{user?.email}</span>
                               </div>
-                              
+
                               <div className="flex flex-wrap items-center gap-3 mt-3">
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                   <Badge className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-3 py-1 shadow-md">
@@ -278,10 +277,10 @@ export default function ProfilePage() {
                                 </motion.div>
                               </div>
                             </div>
-                            
+
                             {/* Bio */}
                             {profileData.bio && (
-                              <motion.div 
+                              <motion.div
                                 className="pt-2"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -290,9 +289,9 @@ export default function ProfilePage() {
                                 <p className="text-sm leading-relaxed">{profileData.bio}</p>
                               </motion.div>
                             )}
-                            
+
                             {/* Contact & Social Info */}
-                            <motion.div 
+                            <motion.div
                               className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2"
                               variants={container}
                               initial="hidden"
@@ -306,26 +305,26 @@ export default function ProfilePage() {
                                   <span>{profileData.location}</span>
                                 </motion.div>
                               )}
-                              
+
                               <motion.div variants={item} className="flex items-center gap-2 text-sm">
                                 <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
                                   <Calendar className="w-4 h-4 text-blue-500" />
                                 </div>
                                 <span>Joined March 2024</span>
                               </motion.div>
-                              
+
                               {profileData.website && (
                                 <motion.div variants={item} className="flex items-center gap-2 text-sm">
                                   <div className="w-8 h-8 rounded-full bg-cyan-100 dark:bg-cyan-900/20 flex items-center justify-center">
                                     <Globe className="w-4 h-4 text-cyan-500" />
                                   </div>
-                                  <a href={profileData.website} target="_blank" rel="noopener noreferrer" 
+                                  <a href={profileData.website} target="_blank" rel="noopener noreferrer"
                                     className="text-primary hover:underline truncate max-w-[200px] transition-all duration-300 hover:text-blue-400">
                                     {profileData.website.replace(/^https?:\/\//, '')}
                                   </a>
                                 </motion.div>
                               )}
-                              
+
                               {profileData.githubUsername && (
                                 <motion.div variants={item} className="flex items-center gap-2 text-sm">
                                   <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
@@ -337,7 +336,7 @@ export default function ProfilePage() {
                                   </a>
                                 </motion.div>
                               )}
-                              
+
                               {profileData.twitterUsername && (
                                 <motion.div variants={item} className="flex items-center gap-2 text-sm">
                                   <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
@@ -351,24 +350,24 @@ export default function ProfilePage() {
                               )}
                             </motion.div>
                           </div>
-                          
+
                           {/* Edit Profile button removed */}
                         </div>
                       </CardContent>
                     </Card>
                   </motion.div>
-
-                  {/* Stats */}
-                  <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-4 gap-6"
-                    variants={container}
-                    initial="hidden"
-                    animate="show"
-                  >
+                  {/* Stats - Full width */}
+                  <div className="w-full mt-6">
+                    <motion.div
+                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
+                      variants={container}
+                      initial="hidden"
+                      animate="show"
+                    >
                     {stats.map((stat, index) => (
                       <motion.div key={index} variants={item}>
                         <motion.div
-                          whileHover={{ 
+                          whileHover={{
                             scale: 1.03,
                             boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                           }}
@@ -391,13 +390,15 @@ export default function ProfilePage() {
                         </motion.div>
                       </motion.div>
                     ))}
-                  </motion.div>
+                    </motion.div>
+                  </div>
 
                   {/* Recent Activity */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
+                    className="w-full max-w-4xl mx-auto mt-6"
                   >
                     <Card className="border-0 shadow-lg bg-card/80 backdrop-blur-sm">
                       <CardHeader>
@@ -433,7 +434,7 @@ export default function ProfilePage() {
                   </motion.div>
                 </TabsContent>
 
-                <TabsContent value="profile" className="space-y-6">
+                <TabsContent value="profile" className="space-y-6 w-full max-w-4xl mx-auto">
                   <Card>
                     <CardHeader>
                       <CardTitle>Personal Information</CardTitle>
@@ -522,7 +523,7 @@ export default function ProfilePage() {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="achievements" className="space-y-6">
+                <TabsContent value="achievements" className="space-y-6 w-full max-w-4xl mx-auto">
                   <Card>
                     <CardHeader>
                       <CardTitle>Your Achievements</CardTitle>
@@ -566,7 +567,7 @@ export default function ProfilePage() {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="settings" className="space-y-6">
+                <TabsContent value="settings" className="space-y-6 w-full max-w-4xl mx-auto">
                   <Card>
                     <CardHeader>
                       <CardTitle>Account Settings</CardTitle>
