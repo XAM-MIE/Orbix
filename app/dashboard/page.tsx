@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { ProtectedRoute } from '@/components/ui/protected-route';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { MobileSidebar } from '@/components/layout/MobileSidebar';
@@ -24,7 +25,12 @@ import {
 
 export default function DashboardPage() {
   const { isOpen } = useSidebar();
-  
+  const router = useRouter();
+
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
+
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background">
@@ -51,7 +57,10 @@ export default function DashboardPage() {
 
                 {/* Quick Actions */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8">
-                  <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                  <Card
+                    className="hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                    onClick={() => handleNavigation('/build')}
+                  >
                     <CardContent className="p-4 lg:p-6">
                       <div className="flex items-center space-x-3 lg:space-x-4">
                         <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center flex-shrink-0">
@@ -70,7 +79,10 @@ export default function DashboardPage() {
                     </CardContent>
                   </Card>
 
-                  <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                  <Card
+                    className="hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                    onClick={() => handleNavigation('/mentor')}
+                  >
                     <CardContent className="p-4 lg:p-6">
                       <div className="flex items-center space-x-3 lg:space-x-4">
                         <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center flex-shrink-0">
@@ -89,7 +101,10 @@ export default function DashboardPage() {
                     </CardContent>
                   </Card>
 
-                  <Card className="hover:shadow-lg transition-all duration-300 cursor-pointer group sm:col-span-2 lg:col-span-1">
+                  <Card
+                    className="hover:shadow-lg transition-all duration-300 cursor-pointer group sm:col-span-2 lg:col-span-1"
+                    onClick={() => handleNavigation('/design')}
+                  >
                     <CardContent className="p-4 lg:p-6">
                       <div className="flex items-center space-x-3 lg:space-x-4">
                         <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0">
@@ -246,7 +261,11 @@ export default function DashboardPage() {
                           </div>
                         </div>
 
-                        <Button variant="outline" className="w-full mt-4">
+                        <Button
+                          variant="outline"
+                          className="w-full mt-4"
+                          onClick={() => handleNavigation('/mentor')}
+                        >
                           Continue Learning
                         </Button>
                       </div>
