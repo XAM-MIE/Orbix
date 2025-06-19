@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { ProtectedRoute } from '@/components/ui/protected-route';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { MobileSidebar } from '@/components/layout/MobileSidebar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -52,6 +53,10 @@ export default function DesignPage() {
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background">
+        {/* Mobile Sidebar */}
+        <MobileSidebar />
+
+        {/* Desktop Sidebar */}
         <div className="w-64 hidden md:block">
           <Sidebar />
         </div>
@@ -59,7 +64,7 @@ export default function DesignPage() {
         <div className="flex-1 flex">
           {/* Design Tools Sidebar */}
           <div className="w-80 border-r flex flex-col">
-            <div className="border-b p-4">
+            <div className="border-b p-4 pt-20 md:pt-4">
               <h2 className="text-xl font-bold mb-2">Design Studio</h2>
               <p className="text-sm text-muted-foreground">
                 Visual app designer with drag-and-drop components

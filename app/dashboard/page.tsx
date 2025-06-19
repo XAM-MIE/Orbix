@@ -3,6 +3,7 @@
 import React from 'react';
 import { ProtectedRoute } from '@/components/ui/protected-route';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { MobileSidebar } from '@/components/layout/MobileSidebar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,14 +28,18 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background">
+        {/* Mobile Sidebar */}
+        <MobileSidebar />
+
+        {/* Desktop Sidebar */}
         <div className={`transition-all duration-300 overflow-hidden hidden md:block ${isOpen ? 'w-64' : 'w-16'}`}>
           <Sidebar />
         </div>
-        
+
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-0">
           <div className="flex-1 overflow-y-auto">
-            <div className="p-4 lg:p-8">
+            <div className="p-4 lg:p-8 pt-20 md:pt-4 lg:pt-8">
               <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-6 lg:mb-8">

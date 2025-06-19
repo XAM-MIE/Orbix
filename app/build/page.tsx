@@ -3,6 +3,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { ProtectedRoute } from '@/components/ui/protected-route';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { MobileSidebar } from '@/components/layout/MobileSidebar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -318,7 +319,10 @@ export default function BuildPage() {
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background">
-        {/* Sidebar */}
+        {/* Mobile Sidebar */}
+        <MobileSidebar />
+
+        {/* Desktop Sidebar */}
         <div className={`transition-all duration-300 overflow-hidden hidden md:block ${isOpen ? 'w-64' : 'w-16'}`}>
           <Sidebar />
         </div>

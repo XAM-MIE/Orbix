@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ProtectedRoute } from '@/components/ui/protected-route';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { MobileSidebar } from '@/components/layout/MobileSidebar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -154,12 +155,16 @@ export default function ProfilePage() {
   return (
     <ProtectedRoute>
       <div className="flex h-screen bg-background overflow-hidden">
+        {/* Mobile Sidebar */}
+        <MobileSidebar />
+
+        {/* Desktop Sidebar */}
         <div className={`transition-all duration-300 overflow-hidden hidden md:block ${isOpen ? 'w-64' : 'w-16'}`}>
           <Sidebar />
         </div>
         
         <div className="flex-1 overflow-auto">
-          <div className="p-8 relative">
+          <div className="p-8 pt-20 md:pt-8 relative">
             {/* Background gradient orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <div className="absolute top-[10%] right-[10%] w-64 h-64 rounded-full bg-purple-500/10 blur-3xl"></div>
